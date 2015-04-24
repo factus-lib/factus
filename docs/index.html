@@ -1,0 +1,63 @@
+---
+layout: docs
+title: Documentación
+permalink: /docs/
+weight: 3
+showInNavbar: true
+active: all
+tools_category: true
+category_info:
+  name: all
+  title: Todas
+---
+
+<h1 class="post-title">Como funciona Factus</h1>
+
+<p>Factus busca simplificar la implementaci&oacute;n de la Factura Electrónica en las empresas del Per&uacute;❤.</p>
+
+<p>Con Factus hemos resuelto todos los requerimientos t&eacute;cnicos de la SUNAT respecto a la generación de los comprobantes electr&oacute;nicos. (XML UBL 2.0, Xmldsig, PDF417, etc...)</p>
+
+<p>Si tienes un sofware de ventas, puedes implementar Factus en tiempo record. Para simplificar la integración con las aplicaciones hemos creado dos tipos de componentes: <p>
+
+<ul>
+<li>Factus API Desktop.</li>
+<li>Factus API REST.</li>
+</ul>
+<br/>
+
+<p>Para resolver el tema de la conservación de los comprobantes, hemos creado Factus Web (<a href="http://factus.pe">factus.pe</a>), ambos componentes de integración envian los comprobantes a Factus Web y es este quien se encarga de asegurar el envío del comprobante a la SUNAT, además generar y enviar los resumenes de boletas y conservarlos.
+</p>
+
+<h1>Factus API Desktop</h1>
+<p>Es una librer&iacute;a para Windows que permite integrarse con cualquier lenguaje de programaci&oacute;n que sorporte la t&eacute;cnologia COM - DLL.</p>
+<p>Quieres generar tus comprobantes durante el d&iacute;a y enviarlos en la noche?. Factus API Desktop es lo que necesitas, no requiere estar en l&iacute;nea y es una excelente alternativa para lo puntos de ventas. Probar intentarlo?, te tomar&aacute; un par de minutos:</p>
+
+<p>IMAGENES Descargalo e instala + Genera una factura electr&oacute;nica desde Excel.</p>
+
+<p>Es realmente simple y a la vez potente, nuestra librer&iacute;a hace todo esto:</p>
+<ul>
+
+<li>Genera el XML del comprobante basado en la especificaci&oacute;n UBL 2.0. La generación es totalmente configurable mediante el lenguaje de plantillas Apache Velocity.</li>
+
+<li>Genera el c&oacute;digo de Barra PDF417 seg&uacute;n las especificaciones de la SUNAT, en cuanto a tama&ntilde;o, parametros y contenido.
+IMAGEN</li>
+
+<li>Firma el XML del comprobante con el certificado digital del negocio. La inclusi&oacute;n del certificado es totalmente configurable v&iacute;a interface gr&aacute;fica. (Nuesta API adem&aacute;s te alerta sobre las fechas de caducidad del certificado). IMAGEN</li>
+
+<li>Genera representaciones impresas (Reporte) y es totalmente configurable utilizando iReport.</li>
+
+<li>Realiza validaciones al documento antes de generarlo. Valida contra el XSD, valida el PrecioUnitario x Cantidad, los n&uacute;meros de RUC, etc. Y si quieres reducir el c&oacute;digo permite configurar el emisor por defecto, as&iacute; indicarle que genere el monto en letras, entre otras cosas y todo configurable desde una interface gr&aacute;fica.</li>
+
+<li>Esto es lo mejor, tiene un mecanismo de encolamiento que permite enviar los comprobantes cuando encuentre conexi&oacute;n a Internet. Cuenta adem&aacute;s de una inteface de monitoreo donde puedes ver los comprobantes encolados y te alerta cuando se acerca al plazo m&aacute;ximo permito para el envio.</li>
+
+</ul>
+<br/>
+<p>
+Para hacerla m&aacute;s simple a&uacute;n, hemos creado ejemplos de uso de Factus API Desktop en lo principales lenguajes de programaci&oacute;n para Windows y los hemos compartidos en Github. En la documentaci&oacute;n encontras todos los ejemplos.
+</p>
+
+<h1>Factus API REST</h1>
+<p>Si tu software de ventas es Web, esta ser&iacute;a la mejor alternativa.</p>
+<p>;-( Actualmente seguimos en desarrollo de este componente.</p>
+
+
