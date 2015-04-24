@@ -1,10 +1,56 @@
 <div class="page-sidebar">
   <div class="page-info">
-    <a href="/historias" class="page-info-title" tabindex="-1" role="presentation" title="Herramientas">Herramientas</a>
-    <p>Estas herramientas facilitan el uso de los datos abiertos del gobierno y así puedes crear tus propias historias.</p>
+    <h1>
+      <p class="page-filters-title">Documentaci&oacute;n Factus</p>
+    </h1>
+    <div>
+      <input aria-labelledby="label-search-data" type="text" placeholder="Buscar documentos">
+    </div>
+    <h2>
+      <a class="btn btn-green" href="paso-1" title="Descarga Factus">Descarga para Windows</a>
+    </h2>
   </div>
+  <hr/>
   <ul class="page-filters" role="presentation" aria-hidden="true">
-    <li class="page-filters-title">Filtros</li>
+    <li class="page-filters-title">Comencemos</li>
+      <li>
+        <a href="/docs" class="category-inner" aria-hidden="true" tabindex="-1">
+          Como funciona
+        </a>
+      </li>
+    {% assign starting = site.posts | where:'category', 'starting' | sort : 'order'%}
+    {% for starting_page in starting %}
+      <li>
+        <a href="{{ site.baseurl | append: starting_page.url }}" class="category-inner {{ starting_page.category_info.name }}{% if page.active == starting_page.category_info.name %} active{% endif %}" aria-hidden="true" tabindex="-1">
+          {{ starting_page.category_info.title }}
+        </a>
+      </li>
+    {% endfor %}
+      <li>
+        <a href="/docs/videos.html" class="category-inner" aria-hidden="true" tabindex="-1">
+          Videos
+        </a>
+      </li>
+  </ul>
+
+  <hr/>
+  <ul class="page-filters" role="presentation" aria-hidden="true">
+    <li class="page-filters-title">Aplicaciones Desktop</li>
+    {% assign tools_categories = site.pages | where: 'tools_category', true | sort: 'order' %}
+    
+    {% for category_page in tools_categories %}
+      <li>
+        <a href="{{ site.baseurl | append: category_page.url }}" class="category-inner {{ category_page.category_info.name }}{% if page.active == category_page.category_info.name %} active{% endif %}" aria-hidden="true" tabindex="-1">
+          <img class="cat-icon" src="/assets/svg/icon-{{ category_page.category_info.name }}.svg" alt="">
+          {{ category_page.category_info.title }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <hr/>
+  <ul class="page-filters" role="presentation" aria-hidden="true">
+    <li class="page-filters-title">Aplicaciones Web</li>
     {% assign tools_categories = site.pages | where: 'tools_category', true | sort: 'order' %}
     
     {% for category_page in tools_categories %}
