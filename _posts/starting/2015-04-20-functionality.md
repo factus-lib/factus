@@ -16,7 +16,7 @@ category_info:
 
 ###{{ page.title }}
 
-Factus API Desktop para aplicaciones Desktop, es una librería desarrollada en C++❤ (COM) para sistemas operativos Windows de 32 y 64 bits. Esta disponible para Windows XP, Windows Vista, Windows 7, Windows 8 y Windows 8.1 en 32 y 64 bits.
+Factus API Desktop para aplicaciones Desktop, es una librería desarrollada en C++ (COM) para sistemas operativos Windows de 32 y 64 bits. Esta disponible para Windows XP, Windows Vista, Windows 7, Windows 8 y Windows 8.1 en 32 y 64 bits.
 
 Factus expone los siguientes objetos:
 
@@ -30,6 +30,7 @@ Factus expone los siguientes objetos:
 
 
 Grafico de clases
+<img src="/assets/images/usecase.png" alt="">
 
 
 
@@ -38,228 +39,250 @@ A continuación mostramos un ejemplo de uso en C#.
 Para utilizar Factus COM lo primero se debe instanciar la clase principal
 
 <?prettify lang=C#?>
-<pre class="prettyprint">
+<pre class="prettyprint" >
 
-  Factus.Comprobante c = new Factus.Comprobante();
-  c.TipoComprobante = “01”;
+            Factus.Comprobante c = new Factus.Comprobante();
+            c.TipoComprobante = “01”;
 
+ </pre>
 
-</pre>
 
 Identificamos el tipo comprobante, en este caso si es Factura , se colocara “01” (Según Documentación SUNAT – Tipos de documento) 
 
 
 
+<?prettify lang=C#?>
+<pre class="prettyprint">
 
-c.SerieCorrelativo = “F001-101”; 
-
+            c.SerieCorrelativo = “F001-101”; 
+  </pre>
 
 
 Este campo es único para cada factura y/o comprobante en general,  lo cual se convierte como un identificador único.
 
 
+El siguiente campo se refiere al tipo de documento de identificacion del Emisor, en este caso para el Documento Nacional de Identidad (DNI), se colocará “01” (Según Catalogo Nro.6 Documentación SUNAT)
+
+<?prettify lang=C#?>
+<pre class="prettyprint">
+
+            c.TipoIdentidademisor = “01”;
+ </pre>
 
 
-c.TipoIdentidademisor = “01”;
+Procedemos a llenar los siguientes campos de la Factura tales como: 
 
 
+Numero identidad emisor: Numero de identidad de la empresa o emisor del Comprobante, 
 
-Este campo se refiere al tipo de documento de identificación del Emisor, en este caso para el Documento Nacional de Identidad (DNI), se colocará “01” (Según Catalogo Nro.6 Documentación SUNAT)
+<?prettify lang=C#?>
+<pre class="prettyprint">
 
-
-
-c.NumeroIdentidadEmisor = “20543314529”
-
-
-
-Número de identidad del emisor del comprobante en este caso el R.U.C.
+            c.NumeroIdentidadEmisor = “20543314529”
+ </pre>
 
 
 
 
-c.RazonSocial = “ComplexLess S.A.C.”
+Razon Social Emisor : Razón social de la empresa o emisor del Comprobante
+
+<?prettify lang=C#?>
+<pre class="prettyprint">
+
+            c.RazonSocialEmisor = “ComplexLess S.A.C.”
+ </pre>
 
 
  
-Razón social del emisor del comprobante
+
+Numero Identidad Cliente: Número de identidad del cliente para este ejemplo, el cliente posee un R.U.C
 
 
+<?prettify lang=C#?>
+<pre class="prettyprint">
 
-
-c.NumeroIdentidadCliente = “20100066603”
-
+            c.NumeroIdentidadCliente = “20100066603”
+ </pre>
 	
 
-En este campo se coloca el número de identidad del Cliente en este caso el Cliente posee un R.U.C.
 
 
+Razon Social Cliente: Razón social del Cliente.
 
+<?prettify lang=C#?>
+<pre class="prettyprint">
 
-c.RazonSocialCliente= ”Sunat”
+            c.RazonSocialCliente= ”Sunat”
+ </pre>
 
 
-Razón social del Cliente.
 
 
 
+Luego de haber completado los campos anteriores, procedemos a llenar los campos de los Items.
 
 
+Instanciamos la clase Item y llenamos el primer campo
 
+<?prettify lang=C#?>
+<pre class="prettyprint">
 
+            Comprobante.Item it = new Comprobante.Item();
+            it.Id = “1”;
+ </pre>
 
 
 
+En este caso el campo "id" se llena de manera correlativa de acuerdo al numero de ítems que posea el comprobante.
 
+<?prettify lang=C#?>
+<pre class="prettyprint">
+  
+            it.Descripcion = ”Televisor LG Full HD “;
+            it.PrecioUnit = 11.80;
+            it.CodigoProducto = 10234;
+            it.Cantidad = 10;
+            it.TotalImpuesto = ”18”;
+ </pre>
 
 
-Procedemos al llenado de Ítems
+Como en el caso anterior, completamos los campos del item: Descripción , Precio Unitario, Código del Producto , Cantidad de cada Ítem , pero antes de registrarlo tenemos que completar los campos del Impuesto de cada ítem : 
 
+Entonces, instanciamos la clase Impuesto y registramos los campos:
 
-/* Instanciamos la clase Item y 
-llenamos el primer campo */
+<?prettify lang=C#?>
+<pre class="prettyprint">
 
-Comprobante.Item it = new Comprobante.Item();
+            Item.Impuesto imp = new Item.Impuesto();
 
-it.Id = “1”;
+            imp.Id = “VAT”;
+            imp.Nombre = “IGV”;
+            imp.SunatId = “1000”;
+            imp.BaseImponible = 100.00;
+            imp.totalImpuesto = 18.00;
+            imp.Porcentaje = 18;
+ </pre>
 
+En este caso supongamos que el item tenga como tipo de impuesto a "IGV". En este caso como es "IGV" se llena el campo id = “VAT” , el nombre = “IGV” y para este caso SunatId vendria a ser “1000”, (Ver Catalogo Nro. 5 SUNAT para mayor información).
 
+Depues de haber completado los campos agregamos el impuesto del ítem asi:
 
 
-El id se llena de manera correlativa de acuerdo al numero de ítems que posea el comprobante.
 
+<?prettify lang=C#?>
+<pre class="prettyprint">
 
+            it.AgregaImpuesto ( imp );
+ </pre>
 
-it.Descripcion = ”Televisor LG Full HD “;
-it.PrecioUnit = 11.80;
-it.CodigoProducto = 10234;
-it.Cantidad = 10;
-it.TotalImpuesto = ”18”;
- 
+Cada Item tendrá un Descuento o un Cargo adicional en la Factura.
+Entonces, se procede a instanciar la clase DescuentosCargos para agregar los Descuentos y/o cargos del ítem:
 
+Una vez mas instanciamos la clase DescuentosCargos y registramos los campos:
 
-Se llena la descripción , precio unitario, código del producto , cantidad de cada Ítem , pero antes de registrarlo tenemos que llenar el impuesto individual de cada ítem : 
+<?prettify lang=C#?>
+<pre class="prettyprint">
 
+            Item.DescuentosCargos desCarIt = new Item.DescuentosCargos();
 
+            desCarIt.IdCd = 1;  /* Para Cargos: id = 1, y para Descuentos: id = 2 */
+            desCarIt.MontoCd= 180.20;
+ </pre>
 
-/* Instanciamos la clase Impuesto y 
-llenamos los campos */
 
-Item.Impuesto imp = new Item.Impuesto();
 
-imp.Id = “VAT”;
-imp.Nombre = “IGV”;
-imp.SunatId = “1000”;
-imp.BaseImponible = 100.00;
-imp.totalImpuesto = 18.00;
-imp.Porcentaje = 18;
 
 
-En este caso supongamos que sea IGV , el id para IGV = “VAT” , el nombre = “IGV” y para este caso SunatId = “1000”, (Ver Catalogo Nro. 5 SUNAT ).
-Luego agregamos el impuesto del ítem:
+Agregamos el DescuentoCargo del ítem:
 
+<?prettify lang=C#?>
+<pre class="prettyprint">
 
-it.AgregaImpuesto ( imp );
+            it.AgregaDesuentoCargo ( desCarIt );
+ </pre>
 
 
+Finalmente procedemos a registrar este Ítem con el impuesto y Descuento o cargo del Item.
 
-Se procede a instanciar la clase DescuentosCargos para agregar los Descuentos y/o cargos del ítem en este caso:
+<?prettify lang=C#?>
+<pre class="prettyprint">
 
+            c.AgregaItem ( it );
+ </pre>
 
-/* Instanciamos la clase DescuentosCargos y 
-llenamos los campos */
 
-Item.DescuentosCargos desCarIt = new     Item.DescuentosCargos();
 
-desCarIt.IdCd = 1;  /* Para Cargos: id = 1, y para                                                       	                     Descuentos: id = 2 
-desCarIt.MontoCd= 180.20;
 
 
 
 
 
+Una vez registrado los impuestos  de cada Ítem , se procede a registrar el impuesto General. 
 
-Luego agregamos el DescuentoCargo del ítem:
+Instanciamos la clase Impuesto (Impuesto General)
 
+<?prettify lang=C#?>
+<pre class="prettyprint">
 
-it.AgregaDesuentoCargo ( desCarIt );
+            Comprobante.Impuesto impG = new Comprobante.Impuesto();
+ </pre>
 
 
+Como en este ejemplo se calculo mediante IGV , los campos serían de la siguiente forma: 
 
-Y procedemos a registrar este Ítem con el impuesto y Descuento cargo del mismo.
 
+<?prettify lang=C#?>
+<pre class="prettyprint">
 
-c.AgregaItem ( it );
+            impG.Id = ”VAT”;
+            impG.SunatId = ”1000”;
+            impG.Nombre = ”IGV”;
+            impG.TotalImpuesto = 72.0;
+ </pre>
 
 
 
+El total impuesto es la suma de los impuestos individuales de cada Ítem.
 
 
+Luego se procede a llenar los Descuentos o Cargos a nivel General del Comprobante.
 
+Instanciamos la clase DescuentosCargos y registramos los campos
 
+<?prettify lang=C#?>
+<pre class="prettyprint">
 
+            Comprobante.DescuentosCargos desCarG = new Comprobante.DescuentosCargos();
 
-Una vez llenado los impuestos  de cada Ítem , se procede a llenar el impuesto General . 
-
-
-/* Instanciamos la clase Impuesto (Impuesto General) */
-
-Comprobante.Impuesto impG = new Comprobante.Impuesto();
-
-
-
-
-Como en este ejemplo se calculo mediante IGV , los campos serian : 
-
-
-impG.Id = ”VAT”;
-impG.SunatId = ”1000”;
-impG.Nombre = ”IGV”;
-impG.TotalImpuesto = 72.0;
-
-
-
-El total impuesto es la suma de los impuestos individuales de cada Ítem,
-
-
-Luego se procede a llenar los Descuentos Cargos Generales.
-
-
-/* Instanciamos la clase DescuentosCargos y 
-llenamos los campos */
-
-Comprobante.DescuentosCargos desCarG = new                                Comprobante.DescuentosCargos();
-
-desCarG.IdCd = 2;  /* Para Cargos: id = 1, y para                                                       	                      Descuentos: id = 2 
-desCarG.MontoCd= 202.30;
-
+            desCarG.IdCd = 2;         /*  Para Cargos: id = 1, y paraDescuentos: id = 2  */
+            desCarG.MontoCd= 202.30;
+ </pre>
 
 
 Y se procede a registrar el descuento Cargo general
  
+<?prettify lang=C#?>
+<pre class="prettyprint">
 
-           c.AgregarDescuentoCargo ( desCarG );
-
-
-
-
-
-Se procede a instanciar la clase  Monto adicional  
+            c.AgregarDescuentoCargo ( desCarG );
+ </pre>
 
 
-    /* Instanciamos la clase MontoAdicional y 
-llenamos los campos */
 
-   Comprobante.MontoAdicional monto = new                                
-                    Comprobante.MontoAdicional();
-   
-   monto.ID =  “1001”;
-   monto.Nombre = “Nombre1”;
-   monto.MontoReferencial =  20.00;
-   monto.ImporteTotal =  18.00;
-   monto.Porcentaje = 18.00;
-   monto.MontoTotal =  100.00;
+A continuación instanciamos la clase  Monto adicional y registramos los campos.
 
+<?prettify lang=C#?>
+<pre class="prettyprint">
 
+             Comprobante.MontoAdicional monto = new Comprobante.MontoAdicional();
+            
+             monto.ID =  “1001”;
+             monto.Nombre = “Nombre1”;
+             monto.MontoReferencial =  20.00;
+             monto.ImporteTotal =  18.00;
+             monto.Porcentaje = 18.00;
+             monto.MontoTotal =  100.00; 
+  </pre>
 
 
 MontoAdicional tiene como campos  a ID, en este caso se coloca el Id = “1001” que es el identificador para el Total valor de venta por Operación Gravada con el IGV (Según Documentación SUNAT).
@@ -268,27 +291,26 @@ Y luego se procede a colocar el Nombre, Monto Referencial, Importe total, Porcen
 Al completar los campos, se procede a registrar  el Monto Adicional 
 
 
-           c.AgregarMontoAdicional ( monto );
+
+<?prettify lang=C#?>
+<pre class="prettyprint">
+
+            c.AgregarMontoAdicional ( monto );
+ </pre>
 
 
+Instanciamos la clase PropiedadAdicional y registramos los campos.
 
 
-Instanciamos la clase PropiedadAdicional.
+<?prettify lang=C#?>
+<pre class="prettyprint">
 
+             Comprobante.PropiedadAdicional propiedad = new Comprobante.PropiedadAdicional();
 
-
-   /* Instanciamos la clase PropiedadAdicional y 
-llenamos los campos */
-
-
-   Comprobante.PropiedadAdicional propiedad = new                                
-                    Comprobante.PropiedadAdicional();
-
-   propiedad.ID = “9999”;
-   propiedad.Nombre  = “nombre”;
-   propiedad.Valor = “valor”;
-
-
+             propiedad.ID = “9999”;
+             propiedad.Nombre  = “nombre”;
+             propiedad.Valor = “valor”;
+ </pre>
 
 
 
@@ -297,22 +319,24 @@ La clase PropiedadAdicional tiene como campos a ID , Nombre y Valor .
 En este ejemplo se coloca en ID = “9999” que concierne a “Otros”. (Según Documentación SUNAT) , luego se coloca el Nombre  y el Valor del concepto adicional.
 
 
+
 Se procede a registrar propiedad adicional.
 
+<?prettify lang=C#?>
+<pre class="prettyprint">
 
-           c.AgregarPropiedadAdicional ( propiedad );
-
-
-
+              c.AgregarPropiedadAdicional ( propiedad );
+ </pre>
 
 
 Luego agregamos “Otro Atributo”.
 
+<?prettify lang=C#?>
+<pre class="prettyprint">
 
-   c.AgregarOtroAtributo ( “1000” ,  
-                          “SESENTA Y TRES CON 72/100 NUEVOS     
-                          SOLES” );
-
+              c.AgregarOtroAtributo ( “1000” ,  
+                                      “SESENTA Y TRES CON 72/100 NUEVOS SOLES”);
+</pre>
 
 
 El método AgregarOtroAtributo tiene como parámetros el ID = “1001” (Según documentación SUNAT) y el Valor, en este caso la Glosa expresado en letras el monto total de la Factura.
@@ -320,13 +344,14 @@ El método AgregarOtroAtributo tiene como parámetros el ID = “1001” (Según
 
 Se procede luego a agregar “Totales”.
 
+<?prettify lang=C#?>
+<pre class="prettyprint">
 
-c.TotalCargos = 40.00;
-c.TotalDescuentos = 10.00;
-c.TotalImpuestos = 12.00;
-c.ImporteTotal = 42.00;
-
-
+              c.TotalCargos = 40.00;
+              c.TotalDescuentos = 10.00;
+              c.TotalImpuestos = 12.00;
+              c.ImporteTotal = 42.00;
+ </pre>
 
 
 Se colocan los valores totales del comprobante
@@ -340,12 +365,14 @@ El Impuesto Total (TotalImpuesto) que es la suma de los montos de impuestos ingr
 Después de haber terminado con la asignación de valores de los campos del Comprobante se usara el método Generar.
 
 
-/* Instanciamos la clase Respuesta */
+Instanciamos la clase Respuesta
 
-Respuesta r;
-r = c.Generar();
+<?prettify lang=C#?>
+<pre class="prettyprint">
 
-
+              Respuesta r;
+              r = c.Generar();
+ </pre>
 
 
 Este método genera el comprobante y lo devuelve en un objeto tipo Respuesta.
@@ -362,23 +389,24 @@ El objeto Respuesta, contiene los siguientes atributos:
 
 Esto puede ser utilizado de la siguiente forma:
 
+<?prettify lang=C#?>
+<pre class="prettyprint">
 
-If (r.CodigoError = 0 ) 
-     	  MsgBox (r.ArchivoPDF417) /*Ruta del PDF471 */
-     	 	  MsgBox (r.ArchivoXML) /*Ruta del XML */
-     	 	  MsgBox (r.Hash) /*Valor del Hash */
-        	  MsgBox (r.ResultadoFirma) /*Valor de la Firma */
+            If (r.CodigoError = 0 ) 
+                 	  MsgBox (r.ArchivoPDF417)      /* Ruta del PDF471 */
+                 	 	MsgBox (r.ArchivoXML)         /* Ruta del XML */
+                 	 	MsgBox (r.Hash)               /* Valor del Hash */
+                    MsgBox (r.ResultadoFirma)     /* Valor de la Firma */
 
-Else
-             MsgBox (r.MensajeError)
-        
-End If
-
+            Else
+                    MsgBox (r.MensajeError)
+              
+            End If
+ </pre>
 
 
 En ejemplo evaluamos : 
 Si CodigoError es igual a cero, quiere decir que NO HAY ERROR por lo tanto el atributo MensajeError vendrá vacío, pero los otros atributos tendrán valores como se describe a continuación: 
-
 
 
 
@@ -390,10 +418,16 @@ Devuelve una cadena de caracteres, que indica la ruta donde se guardó el archiv
 Ejemplo : 
 
 
-C:\Users\Admin\Documents\20543314529_01_F001-101.PNG
+<?prettify lang=C++?>
+<pre class="prettyprint">
+  
+            C:\Users\Admin\Documents\20543314529_01_F001-101.PNG
+ </pre>
 
 
 	Este atributo es el más importante, ya que nos entrega la ruta de la imagen en formato PNG que debemos agregar a la representación impresa del comprobante. Como se muestra en la siguiente imagen de ejemplo:
+
+<center><img src="/assets/images/ticket1.png" alt=""></center>
 
 
 
@@ -403,43 +437,27 @@ Devuelve una cadena de caracteres, que indica la ruta donde se guardó el archiv
 
 	Ejemplo:
 
-  
-C:\Users\Admin\Documents\20543314529_01_F001-101.XML
+<?prettify lang=java?>
+<pre class="prettyprint">
 
-
+            C:\Users\Admin\Documents\20543314529_01_F001-101.XML
+ </pre>
 
 -	Hash
 Devuelve el valor de la cadena resumen calculado del archivo XML  en una cadena de caracteres. Según la especificación de la SUNAT este valor se puede imprimir en la representación impresa del comprobante en vez de utilizar la imagen PDF417.
 
 Ejemplo:
 
+<?prettify lang=C#?>
 
-oXaHY4FXt643ktMb2xEEmrFW5jA=
+<pre class="prettyprint">
 
-
+            oXaHY4FXt643ktMb2xEEmrFW5jA=
+ </pre>
 	Ejemplo de una representación impresa con Hash:
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ <center><img src="/assets/images/ticket2.png" alt=""></center>
 
 
 
@@ -449,14 +467,19 @@ oXaHY4FXt643ktMb2xEEmrFW5jA=
 Devuelve el valor de la firma digital calculada del archivo XML y utilizando el certificado digital asignado al emisor, en cadena de caracteres. 
 
 Ejemplo:
-1
-
-LsNuE0mHnAtQsx5h5ZdWSOnvo3MCtcYfnc34BNsmBj3h+19At3ib5xeGcHt+ZT+Q4vZ/UGP9/fwFCMvtvpXu4zQMcYLIIqIkY4qTXGe/QBu5YG/1xZxCIQMc4cIhPV0unWt/dKwz5Yp4PgjgNr0+eVxQ7LNVSLFwj1aQ9YA3xtIEE/8U6K2UYvDI0HaKZelpnMjyoQn1l6u13+krt7226pwbjo4R/v/0x6wby5PVFrvsu88gEIXDoDrX6u1p2rpCAva3E0mzWWYSJvoE8AM1a/KkGt0LcMQ5ZrqHvKOTxYtR/VLurZsylOZxJkWVTX3Y+oqp4jcdwgPsm1zK8DihQA==
 
 
+<?prettify lang=C#?>
+<pre class="prettyprint">
+      LsNuE0mHnAtQsx5h5ZdWSOnvo3MCtcYfnc34BNsmBj3h+19At3ib5xeGcHt+ZT+Q4vZ/UGP9/
+      fwFCMvtvpXu4zQMcYLIIqIkY4qTXGe/QBu5YG/1xZxCIQMc4cIhPV0unWt/dKwz5Yp4PgjgNr
+      0+eVxQ7LNVSLFwj1aQ9YA3xtIEE/8U6K2UYvDI0HaKZelpnMjyoQn1l6u13+krt7226pwbjo4
+      R/v/0x6wby5PVFrvsu88gEIXDoDrX6u1p2rpCAva3E0mzWWYSJvoE8AM1a/KkGt0LcMQ5ZrqH
+      vKOTxYtR/VLurZsylOZxJkWVTX3Y+oqp4jcdwgPsm1zK8DihQA==
+ </pre>
 
 
-Para una mejor referencia se adjunta el diagrama de caso de Uso:
+
 
 
 
