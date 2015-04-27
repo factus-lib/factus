@@ -1,6 +1,6 @@
 #Site settings
-title: DATOS.GOB.MX
-email: hola@datos.gob.mx
+title: factus.pe
+email: sales@factus.pe 
 layout: default.html
 description: > # this means to ignore newlines until "baseurl:"
   En datos.gob.mx puedes descargar y utilizar libremente datos abiertos
