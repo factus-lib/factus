@@ -5,8 +5,8 @@ layout: default.html
 description: > # this means to ignore newlines until "baseurl:"
   En datos.gob.mx puedes descargar y utilizar libremente datos abiertos
   que el Gobierno de la República genera y recolecta.
-baseurl: "http://factus-lib.github.io/factus" # the subpath of your site, e.g. /blog/
-url: "http://factus-lib.github.io/factus" # the base hostname & protocol for your site
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://docs.factus.pe" # the base hostname & protocol for your site
 twitter_username: DatosGobMx
 twitter_text: "Descarga y utiliza libremente datos abiertos que el Gobierno de la República genera y recolecta. @GobRep @DatosGobMx"
 github_username:  mxabierto
