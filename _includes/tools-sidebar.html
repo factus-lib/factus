@@ -14,15 +14,15 @@
   <ul class="page-filters" role="presentation" aria-hidden="true">
     <li class="page-filters-title">Comencemos</li>
       <li>
-        <a href="/" class="category-inner" aria-hidden="true" tabindex="-1">
+        <a href="/docs" class="category-inner" aria-hidden="true" tabindex="-1">
           Como funciona
         </a>
       </li>
     {% assign starting = site.posts | where:'category', 'starting' | sort : 'order'%}
-    {% for starting_page in starting %}
+    {% for starting_post in starting %}
       <li>
-        <a href="{{ site.baseurl | append: starting_page.url }}" class="category-inner {{ starting_page.category_info.name }}{% if page.active == starting_page.category_info.name %} active{% endif %}" aria-hidden="true" tabindex="-1">
-          {{ starting_page.category_info.title }}
+        <a href="{{ site.baseurl | append: starting_post.url }}" class="category-inner {{ starting_post.category_info.name }}{% if page.active == starting_post.category_info.name %} active{% endif %}" aria-hidden="true" tabindex="-1">
+          {{ starting_post.category_info.title }}
         </a>
       </li>
     {% endfor %}
@@ -36,13 +36,12 @@
   <hr/>
   <ul class="page-filters" role="presentation" aria-hidden="true">
     <li class="page-filters-title">Aplicaciones Desktop</li>
-    {% assign tools_categories = site.pages | where: 'tools_category', true | sort: 'order' %}
+    {% assign desktop = site.posts | where: 'category', 'desktop' | sort: 'order' %}
     
-    {% for category_page in tools_categories %}
+    {% for desktop_post in desktop %}
       <li>
-        <a href="{{ site.baseurl | append: category_page.url }}" class="category-inner {{ category_page.category_info.name }}{% if page.active == category_page.category_info.name %} active{% endif %}" aria-hidden="true" tabindex="-1">
-          <img class="cat-icon" src="/assets/svg/icon-{{ category_page.category_info.name }}.svg" alt="">
-          {{ category_page.category_info.title }}
+        <a href="{{ site.baseurl | append: desktop_post.url }}" class="category-inner {{ desktop_post.category_info.name }}{% if page.active == desktop_post.category_info.name %} active{% endif %}" aria-hidden="true" tabindex="-1">
+          {{ desktop_post.category_info.title }}
         </a>
       </li>
     {% endfor %}
@@ -51,13 +50,12 @@
   <hr/>
   <ul class="page-filters" role="presentation" aria-hidden="true">
     <li class="page-filters-title">Aplicaciones Web</li>
-    {% assign tools_categories = site.pages | where: 'tools_category', true | sort: 'order' %}
+    {% assign web = site.posts | where: 'category', 'web' | sort: 'order' %}
     
-    {% for category_page in tools_categories %}
+    {% for web_post in web %}
       <li>
-        <a href="{{ site.baseurl | append: category_page.url }}" class="category-inner {{ category_page.category_info.name }}{% if page.active == category_page.category_info.name %} active{% endif %}" aria-hidden="true" tabindex="-1">
-          <img class="cat-icon" src="/assets/svg/icon-{{ category_page.category_info.name }}.svg" alt="">
-          {{ category_page.category_info.title }}
+        <a href="{{ site.baseurl | append: web_post.url }}" class="category-inner {{ web_post.category_info.name }}{% if page.active == web_post.category_info.name %} active{% endif %}" aria-hidden="true" tabindex="-1">
+          {{ web_post.category_info.title }}
         </a>
       </li>
     {% endfor %}
