@@ -1,0 +1,46 @@
+---
+layout: default
+title: Salud · Herramientas
+permalink: /docs/videos/
+
+active: salud
+tools_category: true
+order: 2
+category_info:
+  name: videos
+  title: Videos
+---
+
+<section>
+  <div class="main-container">
+ <div class="col-lg-12">
+      <div class="col-lg-3">
+        <div class="col-inner sidebar bkg">
+          {% include tools-sidebar.html %}
+        </div>
+      </div>
+      <div class="col-lg-9 sidebar">
+        <div class="col-inner">
+          <div class="entities-list-cards" role="list" aria-label="Historias con datos abiertos">
+            {% assign tools = site.posts | where:'section', 'herramientas' | where: 'category', 'salud' %}
+            {% for post in tools %}
+              {% if forloop.first %}
+                <div class="col-lg-12" role="listitem">
+                  <div class="col-inner">
+                    {% include entity-card.html post=post size="lg" showAuthor=false showCategory=true %}
+                  </div>
+                </div>
+              {% else %}
+                <div class="col-lg-6" role="listitem">
+                  <div class="col-inner">
+                    {% include entity-card.html post=post showAuthor=false showCategory=true %}
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
