@@ -14,8 +14,8 @@ category_info:
   title: Funcionalidad de la API
 ---
 
-###{{ page.title }}###
-<br/>
+<h1 class="down">{{ page.title }}</h1>
+
 Factus API Desktop para aplicaciones Desktop, es una librería desarrollada en C++ (COM) para sistemas operativos Windows de 32 y 64 bits. Esta disponible para Windows XP, Windows Vista, Windows 7, Windows 8 y Windows 8.1 en 32 y 64 bits.
 
 <h2><center>Gráfico de clases</center></h2>
@@ -25,20 +25,16 @@ Factus expone los siguientes objetos:
 
 **Comprobante**, es el objeto principal que contiene la información del comprobante electrónico(Boletas, Facturas, Notas de Crédito y Notas de Débito), contiene información de cabecera, participantes, totales y objetos como Items, Impuestos, Documentos de Referencia, Montos Adicionales, Propiedades Adicionales y Atributos personalizados.
 
-**Participante**, es el objeto que es usado para identificar al emisor y cliente(Receptor), este objeto no necesita ser inicializado y se usa de ls siguiente forma: _comprobante.Emisor.TipoIdentidad = "6"_ y _comprobante.Cliente.TipoIdentidad = "6"_. Contiene datos obligatorios y opcionales.
-
-**Item**, 
-
-**Impuesto**,
-
-**DescuentoCargo**, 
-
-**MontoAdicional**,
-
-**PropiedadAdicional**,
-
-**DocumentoReferencia**,
-
+**Participante**, es el objeto que es usado para identificar al emisor y cliente(Receptor), este objeto no necesita ser inicializado y se usa de la siguiente forma: _comprobante.Emisor.TipoIdentidad = "6"_ y _comprobante.Cliente.TipoIdentidad = "6"_. Contiene datos obligatorios y opcionales.
+<ul class="distancia">
+<li>Item,</li> 
+<li>Impuesto,</li>
+<li>DescuentoCargo,</li>
+<li>MontoAdicional,</li>
+<li>PropiedadAdicional,</li>
+<li>DocumentoReferencia,</li>
+</ul>
+<br>
 **Respuesta**, este objeto es devuelto al invocar al método _Generar()_, contiene información como resultado de la generación del comprobante electrónico, cuando el código de error es cero, la generación fue correcta en caso contrario indica el error y mensaje de error. Por otro lado devuelve información sobre la ubicación del archivo XML generado, la firma, el hash y la imagen del código de barra.
 
 
@@ -74,9 +70,8 @@ Lo siguiente que haremos, es instanciar la clase **Participante**, ya que aquí 
 
 Colocamos el numero del **_tipo de documento del Emisor_**, según Documentación SUNAT (_Catalogo Nro.6_).([Ver Documentación SUNAT](https://s3.amazonaws.com/insc/Libros+y+Registros+Electronicos/Anexos+RS+199_2014/Nuevo+Anexo+8+-+Cat%C3%A1logos.pdf))
 
-<br/>**Procedemos a llenar los demás campos del Emisor:**
+**Procedemos a llenar los demás campos del Emisor:**
 
-<br/>
 <li><i>Numero identidad emisor:</i> Numero de identidad del emisor del Comprobante.</li>
 
 <li><i>Nombre Comercial Emisor:</i> Nombre comercial del emisor del Comprobante.</li>
@@ -95,7 +90,7 @@ Colocamos el numero del **_tipo de documento del Emisor_**, según Documentació
 <li><i>Distrito Emisor:</i> Distrito del emisor del Comprobante.</li>
 
 <li><i>Dirección Emisor:</i> Dirección detallada del emisor del Comprobante.</li>
-
+<br>
 <?prettify lang=C#?>
 <pre class="prettyprint">
 
@@ -119,7 +114,7 @@ Colocamos el numero del **_tipo de documento del Cliente_**, en este caso para e
 
 <br/>**Procedemos a llenar los demás campos del Cliente:**
 
-<br/>
+<ul class="distancia">
 <li><i>Numero identidad cliente:</i> Numero de identidad del cliente.</li>
 
 <li><i>Razón Social cliente:</i> Razón Social del cliente.</li>
@@ -129,6 +124,7 @@ Colocamos el numero del **_tipo de documento del Cliente_**, en este caso para e
 <li><i>Distrito cliente:</i> Distrito del cliente.</li>
 
 <li><i>Dirección cliente:</i> Dirección detallada del cliente.</li>
+</ul>
 
 <?prettify lang=C#?>
 <pre class="prettyprint">
@@ -240,7 +236,7 @@ _Agregamos el descuento o cargo del ítem:_
 
             it.AgregarDescuentoCargo(desCarIt);
  </pre>
-<br><br>
+<br>
 
 _Finalmente procedemos a agregar este Ítem con el impuesto y Descuento o cargo del mismo._
 
@@ -252,7 +248,7 @@ _Finalmente procedemos a agregar este Ítem con el impuesto y Descuento o cargo 
 
 
 ***********
-<br><br>
+<br>
 
 
 Una vez registrado los impuestos  de cada Ítem , se sabe que tambien existe un impuesto a nivel general en la factura, para esto vamos a registrar el Impuesto General.  
@@ -294,7 +290,7 @@ El campo **TotalImpuesto** es la suma de los impuestos individuales de cada Íte
  ************************************************
 
 
-<br><br>
+<br>
 Al igual que los impuestos, también existen los Descuentos/Cargos a nivel general en la factura.
 (Pueden existir varios _descuentos_ o _cargos_ en la factura a nivel general).  
 
@@ -303,9 +299,7 @@ _**Instanciamos la clase DescuentosCargos**_
 <?prettify lang=C#?>
 <pre class="prettyprint">
 
-            Comprobante.DescuentosCargos desCarG = new Comprobante.DescuentosCargos();
-
- </pre>
+            Comprobante.DescuentosCargos desCarG = new Comprobante.DescuentosCargos();                                                            </pre>
 
 
 <br>
@@ -388,9 +382,7 @@ _**Instanciamos la clase PropiedadAdicional**_
 <?prettify lang=C#?>
 <pre class="prettyprint">
 
-             Comprobante.PropiedadAdicional propiedad = new Comprobante.PropiedadAdicional();       
- </pre>
-
+             Comprobante.PropiedadAdicional propiedad = new Comprobante.PropiedadAdicional();                               </pre>
 
 
 
@@ -558,14 +550,15 @@ _Llamamos al método Generar._
 <br>
 
 El objeto **Respuesta** contiene los siguientes atributos:  
-<br>
+
+<ul class="distancia">
 <li>CodigoError</li>
 <li>MensajeError</li>
 <li>ArchivoPDF417</li>
 <li>ArchivoXML</li>
 <li>Hash</li>
 <li>ResultadoFirma</li>
-
+</ul>
 
 <br>
 Esto puede ser utilizado de la siguiente forma:
