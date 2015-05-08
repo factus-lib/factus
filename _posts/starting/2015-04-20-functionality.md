@@ -54,6 +54,7 @@ Identificamos los datos básicos del comprobante como el **_tipo de comprobante_
 El campo **_serie correlativo_** es el número asignado por el Emisor, este campo es el identificador único del comprobante.   
 Colocamos también la **_fecha de emisión_** del comprobante en formato YYYY-MM-DD.   
 Registramos el **_tipo de moneda_** del comprobante.   
+
 <?prettify lang=C#?>
 <pre class="prettyprint" >
 
@@ -91,6 +92,7 @@ Colocamos el numero del **_tipo de documento del Emisor_**, según Documentació
 
 <li><i>Dirección Emisor:</i> Dirección detallada del emisor del Comprobante.</li>
 <br>
+
 <?prettify lang=C#?>
 <pre class="prettyprint">
 

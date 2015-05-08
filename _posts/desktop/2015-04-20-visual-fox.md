@@ -16,15 +16,18 @@ category_info:
 
 ###{{ page.title }}
 
-<br/>
-En esta sección encontrás ejemplos de generación de comprobantes electrónicos en Visual Fox Pro 8.0.
-
-1) Ejemplo de la generación de una Boleta Electrónica con 4 Items.
-
-
 <style type="text/css">
   .gist-file
   .gist-data {max-height: 500px;}
 </style>
 
+<br/>
+Ejemplos de generación de comprobantes electrónicos en Delphi 7.0 usando la librería Factus Cliente Desktop.
+
+1) Ejemplo de la generación de una Factura Electrónica con 1 Item por 750 dólares americanos. En este ejemplo el monto en letras es registrado.
 <script src="https://gist.github.com/factus-lib/23201a667b7e68869a2f.js"></script>
+
+<br/>
+
+2) Ejemplo de la generación de una Factura Electrónica con 1 Item por 735.69 nuevos soles. En este ejemplo el monto en letras es generado por la librería.
+<script src="https://gist.github.com/factus-lib/94689d5ce5b5eb159c39.js"></script>
