@@ -1,0 +1,64 @@
+<div class="page-sidebar">
+  <div class="page-info">
+    <h1>
+      <p class="page-filters-title">Factus Documentation</p>
+    </h1>
+    <div>
+      <input aria-labelledby="label-search-data" class="label-search" type="text" placeholder="Search"/>
+    </div>
+    <div>
+      <a class="btn-factus btn" href="paso-1" title="Descarga Factus">Download</a>
+      <p>For Windows</p>
+    </div>
+  </div>
+  <ul class="page-filters" role="presentation" aria-hidden="true">
+    <li class="page-filters-title">Start</li>
+      <li>
+        <a href="/docs" class="category-inner" aria-hidden="true" tabindex="-1">
+          <img src="/assets/images/arrow.png"/>
+          How does it work
+        </a>
+      </li>
+    {% assign starting = site.posts | where:'category', 'starting' | sort : 'order'%}
+    {% for starting_post in starting %}
+      <li>
+        <a href="{{ site.baseurl | append: starting_post.url }}" class="category-inner {{ starting_post.category_info.name }}{% if page.active == starting_post.category_info.name %} active{% endif %}" aria-hidden="true" tabindex="-1">
+          <img src="/assets/images/arrow.png"/>
+          {{ starting_post.category_info.title }}
+        </a>
+      </li>
+    {% endfor %}
+      <li>
+        <a href="/docs/videos/" class="category-inner" aria-hidden="true" tabindex="-1">
+          <img src="/assets/images/arrow.png"/>
+          Videos
+        </a>
+      </li>
+  </ul>
+  <ul class="page-filters" role="presentation" aria-hidden="true">
+    <li class="page-filters-title">Aplicaciones Desktop</li>
+    {% assign desktop = site.posts | where: 'category', 'desktop' | sort: 'order' %}
+    
+    {% for desktop_post in desktop %}
+      <li>
+        <a href="{{ site.baseurl | append: desktop_post.url }}" class="category-inner {{ desktop_post.category_info.name }}{% if page.active == desktop_post.category_info.name %} active{% endif %}" aria-hidden="true" tabindex="-1">
+          <img src="/assets/images/arrow.png"/>
+          {{ desktop_post.category_info.title }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+  <ul class="page-filters" role="presentation" aria-hidden="true">
+    <li class="page-filters-title">Aplicaciones Web</li>
+    {% assign web = site.posts | where: 'category', 'web' | sort: 'order' %}
+    
+    {% for web_post in web %}
+      <li>
+        <a href="{{ site.baseurl | append: web_post.url }}" class="category-inner {{ web_post.category_info.name }}{% if page.active == web_post.category_info.name %} active{% endif %}" aria-hidden="true" tabindex="-1">
+          <img src="/assets/images/arrow.png"/>
+          {{ web_post.category_info.title }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>

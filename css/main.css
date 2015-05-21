@@ -2157,4 +2157,36 @@ pre .lit, code .lit{
   color: #8FD6F5 !important;
 }
 
-body{top:0 !important;}
+.btn-default-main {
+color: #747678;
+background-color: #fff;
+border-color: #ccc !important;
+}
+.btn-default-main:hover {
+background-color: #f6f6f6;
+}
+.btn-main {
+display: inline-block;
+margin-bottom: 0;
+font-weight: 400;
+text-align: center;
+vertical-align: middle;
+cursor: pointer;
+background-image: none;
+border: 1px solid transparent;
+white-space: nowrap;
+padding: 6px 12px;
+font-size: 14px;
+line-height: 1.42857143;
+border-radius: 4px;
+-webkit-user-select: none;
+}
+.fly-rigth{
+  float: right;
+}
+.min-lgn{
+  min-width: 100px;
+}
+.top-logo{
+  margin-top: 7px !important;
+}

@@ -26,6 +26,7 @@ Factus expone los siguientes objetos:
 **Comprobante**, es el objeto principal que contiene la información del comprobante electrónico(Boletas, Facturas, Notas de Crédito y Notas de Débito), contiene información de cabecera, participantes, totales y objetos como Items, Impuestos, Documentos de Referencia, Montos Adicionales, Propiedades Adicionales y Atributos personalizados.
 
 **Participante**, es el objeto que es usado para identificar al emisor y cliente(Receptor), este objeto no necesita ser inicializado y se usa de la siguiente forma: _comprobante.Emisor.TipoIdentidad = "6"_ y _comprobante.Cliente.TipoIdentidad = "6"_. Contiene datos obligatorios y opcionales.
+
 <ul class="distancia">
 <li>Item,</li> 
 <li>Impuesto,</li>
@@ -35,6 +36,7 @@ Factus expone los siguientes objetos:
 <li>DocumentoReferencia,</li>
 </ul>
 <br>
+
 **Respuesta**, este objeto es devuelto al invocar al método _Generar()_, contiene información como resultado de la generación del comprobante electrónico, cuando el código de error es cero, la generación fue correcta en caso contrario indica el error y mensaje de error. Por otro lado devuelve información sobre la ubicación del archivo XML generado, la firma, el hash y la imagen del código de barra.
 
 

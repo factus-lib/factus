@@ -1,0 +1,113 @@
+---
+layout: docs-en
+title: Documentación
+permalink: /docs/index-en.html
+weight: 3
+showInNavbar: false
+active: all
+tools_category: true
+category_info:
+  name: all
+  title: Todas
+---
+<div class="dropdown fly-rigth">
+    <button class="btn-main btn-default-main dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Lenguaje
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu min-lgn" role="menu" aria-labelledby="menu1">
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="index.html">Spanish</a></li>
+    </ul>
+  </div>
+
+<h1 class="down">How Factus Works</h1>
+
+<p>Factus seeks to simplify the implementation of the Electronic Invoice in the companies in Peru. With Factus we have solved all the technical requirements of SUNAT regarding to the generation of electronic invoices. (XML UBL 2.0, XMLDSig, PDF417, etc ...)</p>
+
+<p>If you have a Point of Sales software, you can implement Factus in record time. To simplify integration with applications we have created two types of components:<p>
+
+<ul class="distancia">
+<li>Factus API Desktop.</li>
+<li>Factus API REST.</li>
+</ul>
+<br/>
+
+<p>To resolve the issue of conservation of invocies, we have created Factus Web (<a href="http://factus.pe">factus.pe</a>), both components of integration send invoices to Factus Web and this is responsible for ensuring the delivery of documents to  SUNAT also generate and send summaries of invoices and record the information.
+</p>
+
+<h1>Desktop API Factus</h1>
+<p>It is a library for Windows that allows integration with any programming language that support COM technology - DLL.</p>
+<p>Do you want to generate your receipts during the day and send them at night?  Factus Desktop API is what you need, no need to be online and is an excellent alternative to stores. Want to try  it?, only takes a couple of minutes:</p>
+
+	<div class="col-lg-12 cleaning img-top">
+	    <div class="col-lg-4 col-sm-4 code-img down-img">
+	        <div class="bkg-img">
+	           <div class="box-icon"><h3>1</h3></div>
+	              <div class="info">
+	                <h6>step</h6>
+	                <h4>Download Factus</h4>
+	                <div>
+	                <a href="#"><img class="img-responsive img-down" src="/assets/images/descargar.png"></a>
+	               </div>
+	              </div>
+	            </div>
+	        </div>
+	    <div class="col-lg-4 col-sm-4 code-img down-img">
+	        <div class="bkg-img">
+	            <div class="box-icon"><h3>2</h3></div>
+	                <div class="info">
+	                <h6>step</h6>
+	                <h4>Install Factus</h4>
+	                <div>
+	                <img class="img-up" src="/assets/images/instalar.png">
+	                </div>
+	                </div>
+	        </div>
+	    </div>
+	    <div class="col-lg-4 col-sm-4 code-img down-img">
+	        <div class="bkg-img">
+	            <div class="box-icon"><h3>3</h3></div>
+	                <div class="info">
+	                <h6>step</h6>
+	                <h4>Generate Factura</h4>
+	                <div>
+                    <img class="img-up" src="/assets/images/generar.png">
+                    </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+
+<p>It's really simple and powerful, our library does all this:</p>
+<ul class="distancia">
+	<li>Generates XML-based invoice UBL 2.0 specification. The generation is fully configurable by the Apache Velocity template language.</li>
+
+	<li>Generate PDF417 bar code as specified by the SUNAT, in terms of size, parameters and content.</li>
+</ul>
+
+<div class="cleaning img-top code"><h6 class="down">Código de barra PDF417</h6><img src="/assets/images/code.png"/></div>
+
+<ul class="distancia">
+	<li>Sign the XML invoice with the digital certificate from the company. The inclusion of the certificate is fully configurable via GUI. (API also alerts you to the expiration dates of the certificate).</li>
+
+</ul>
+
+<div class="cleaning img-top code"><h6 class="down">Configuration screen</h6><img src="/assets/images/config.png"/></div>
+
+
+<ul class="distancia">
+	<li>Generates printed representations (Reporting) and is fully configurable using iReport.</li>
+
+	<li>Validates before generating the document. Validates against the XSD, validates the UnitPrice x amount, RUC numbers, etc. And if you want to reduce the number of lines codes used to configure the transmitter by default, so tell that generates the amount of letters, among other things, and all configurable from a graphical interface.</li>
+
+	<li>This is the best, the component includes has a queuing mechanism that sends the invoices when you find Internet connection. It also has a monitoring inteface where you can see the glue vouchers and alerts you when you reach the maximum term to allow sending.</li>
+</ul>
+
+<br/>
+<p>
+To make it even simpler, we have created usage examples Factus Desktop API in major programming languages for Windows and we have shared on Github. In the documentation you will find all examples.
+</p>
+
+<h1>Factus REST API</h1>
+<p>If your software is Web sales, this would be the best alternative. Currently we are still developing this component.
+</p>
+
+
